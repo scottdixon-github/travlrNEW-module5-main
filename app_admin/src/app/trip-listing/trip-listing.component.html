@@ -1,0 +1,32 @@
+
+<pre>{{ title }}</pre>
+<h2>Trips Page</h2>
+
+
+  <button (click)="addNewTrip()" class="btn btn-info">Add Trip</button>
+  <button (click)="deleteTrip()" class="btn btn-danger">Delete Trip</button>
+  <button (click)="updateTrip()" class="btn btn-warning">Update Trip</button>
+  <button (click)="getTripsByResort()" class="btn btn-primary">Get Trips by Resort</button>
+  <button (click)="getTripsByLength()" class="btn btn-primary">Get Trips by Length</button>
+  <button (click)="getTripsByPrice()" class="btn btn-primary">Get Trips by Price</button>
+  <button (click)="getTripsByDate()" class="btn btn-primary">Get Trips by Date</button>
+
+
+<div class="row">
+  <div *ngFor="let trip of trips" class="card-deck mt-2">
+    <app-trip-card [trip]="trip"></app-trip-card>
+    <div class="card ml-4" style="width: 18rem;">
+      <div class="card-header">{{ trip.name }}</div>
+      <img src="assets/images/{{ trip.image }}" alt="trip thumbnail" class="card-img-top">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2 text-muted">{{ trip.resort }}</h6>
+        <p class="card-subtitle mt-3 mb-3 text-muted">{{ trip.length }} only {{ trip.perPerson | currency: 'USD': true }} per person</p>
+        <p class="card-text" [innerHTML]="trip.description"></p>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+
+ 
